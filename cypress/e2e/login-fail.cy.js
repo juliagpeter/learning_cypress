@@ -1,6 +1,6 @@
 describe("Login Adopet", () => {
   beforeEach(() => {
-    cy.visit("https://adopet-frontend-cypress.vercel.app/");
+    cy.visit("https://adopet-frontend-cypress.vercel.app");
     cy.get('[data-test="login-button"]').click();
     cy.intercept(
       "POST",
