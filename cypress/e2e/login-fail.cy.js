@@ -11,6 +11,16 @@ describe("Login Adopet", () => {
     ).as("stubPost");
   });
 });
-it("Deve falhar mesmo com os campos preenchidos corretamente", () => {
-  cy.login("emailfalso@gmail.com", "Senha123");
-});
+it('Verifica mensagem de falha no login', () => {
+    cy.get('[data-test="submit-button"]').click()
+    cy.contains('É necessário informar um endereço de email').should('be.visible')
+    cy.contains('Insira sua senha').should('be.visible')
+})
+
+// código omitido
+
+it('Deve falhar mesmo que os campos sejam preenchidos corretamente', ()=> {
+    cy.login('ana@email.com', 'Senha123')
+    cy.wait('@stubPost')
+    cy.contains('Falha no login. Consulte suas credenciais.').should('be.visible')
+})
